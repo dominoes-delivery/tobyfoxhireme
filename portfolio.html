@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+// =====================================================
+// CONFIGURATION
+// Change only these values
+// =====================================================
+
+const OWNER_NAME = "Adam";
+const OWNER_ROLE = "Student Developer";
+
+const HERO_TAGLINE =
+    "Building games, websites, and apps while learning to code — one project at a time.";
+
+const ABOUT =
+    "I'm Adam, a student developer learning programming through Coding Mind. " +
+    "Here are some of the projects I've built across Python, web, and frontend development.";
+
+const PROJECTS = [
+    {
+        title: "Python Project",
+        tag: "Python",
+        blurb: "A project built with Python — logic, problem-solving, and clean code.",
+        videoId: "cfKVSWWZNCc"
+    },
+    {
+        title: "Web Project",
+        tag: "Web",
+        blurb: "A web project bringing ideas to life in the browser with HTML, CSS, and JS.",
+        videoId: "vLafeOwR160"
+    },
+    {
+        title: "Frontend Project",
+        tag: "Frontend",
+        blurb: "A frontend development project focused on layout, styling, and interactivity.",
+        videoId: "9xBFY10vc40"
+    }
+];
+
+const CHANNEL_URL = "https://www.youtube.com/@codingminds882";
+const GAME_URL = "https://applemonkey5.itch.io/undertale-but-temu";
+
+// =====================================================
+</script>
+
+<title id="page-title">Portfolio</title>
+
+<style>
+:root {
+    --bg: #07060d;
+    --card: rgba(255, 255, 255, 0.04);
+    --border: rgba(255, 255, 255, 0.08);
+    --text: #f3f1ff;
+    --muted: #a8a6c4;
+    --accent-1: #7c5cff;
+    --accent-2: #ff4f9a;
+    --accent-3: #2de2e6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ---------- Animated aurora background ---------- */
+.aurora {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% -20%, #14102b 0%, #07060d 60%);
+}
+.aurora span {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.55;
+    animation: drift 18s ease-in-out infinite;
+}
+.aurora span:nth-child(1) { width: 480px; height: 480px; background: var(--accent-1); top: -120px; left: -80px; }
+.aurora span:nth-child(2) { width: 420px; height: 420px; background: var(--accent-2); top: 20%; right: -120px; animation-delay: -6s; }
+.aurora span:nth-child(3) { width: 380px; height: 380px; background: var(--accent-3); bottom: -140px; left: 30%; animation-delay: -12s; }
+
+@keyframes drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(60px, 40px) scale(1.15); }
+    66%      { transform: translate(-40px, 60px) scale(0.9); }
+}
+
+/* subtle grid overlay */
+.grid-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 75%);
+}
+
+/* ---------- Nav ---------- */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 6vw;
+    backdrop-filter: blur(12px);
+    background: rgba(7, 6, 13, 0.55);
+    border-bottom: 1px solid var(--border);
+}
+.brand {
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    font-size: 1.1rem;
+}
+.brand .dot { color: var(--accent-2); }
+.nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 26px;
+    font-size: 0.92rem;
+    transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+
+/* ---------- Hero ---------- */
+.hero {
+    text-align: center;
+    padding: 130px 6vw 90px;
+    position: relative;
+}
+.eyebrow {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--card);
+    margin-bottom: 26px;
+}
+.hero h1 {
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    margin-bottom: 18px;
+}
+.gradient-text {
+    background: linear-gradient(110deg, var(--accent-3), var(--accent-1) 45%, var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shine 6s linear infinite;
+}
+@keyframes shine { to { background-position: 200% center; } }
+
+.hero .role {
+    font-size: clamp(1rem, 2.4vw, 1.4rem);
+    color: var(--muted);
+    margin-bottom: 22px;
+    font-weight: 500;
+}
+.hero .tagline {
+    max-width: 640px;
+    margin: 0 auto 36px;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+.cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn {
+    text-decoration: none;
+    color: #fff;
+    padding: 13px 26px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--border);
+}
+.btn.primary {
+    background: linear-gradient(110deg, var(--accent-1), var(--accent-2));
+    border: none;
+    box-shadow: 0 10px 30px -10px var(--accent-1);
+}
+.btn.ghost { background: var(--card); }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 14px 34px -12px var(--accent-2); }
+
+/* ---------- Section ---------- */
+.section { padding: 40px 6vw 90px; max-width: 1200px; margin: 0 auto; }
+.section-head { margin-bottom: 44px; }
+.section-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+.section-head p { color: var(--muted); max-width: 560px; }
+
+/* ---------- Project grid ---------- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 26px;
+}
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+.card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(124, 92, 255, 0.5);
+    box-shadow: 0 24px 50px -24px rgba(124, 92, 255, 0.6);
+}
+
+/* video facade */
+.video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    cursor: pointer;
+    background: #000 center/cover no-repeat;
+    display: block;
+}
+.video::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(7,6,13,0) 40%, rgba(7,6,13,0.65));
+}
+.play-btn {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.35);
+    display: grid;
+    place-items: center;
+    z-index: 2;
+    transition: transform 0.2s, background 0.2s;
+}
+.video:hover .play-btn { transform: scale(1.12); background: var(--accent-2); }
+.play-btn svg { width: 26px; height: 26px; margin-left: 4px; fill: #fff; }
+
+.card-body { padding: 22px 22px 26px; }
+.chip {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent-3);
+    border: 1px solid rgba(45, 226, 230, 0.35);
+    border-radius: 999px;
+    padding: 4px 12px;
+    margin-bottom: 14px;
+}
+.card-body h3 { font-size: 1.3rem; margin-bottom: 8px; }
+.card-body p { color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- Reveal animation ---------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Footer ---------- */
+footer {
+    text-align: center;
+    padding: 50px 6vw 60px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+}
+footer a { color: var(--accent-1); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+</style>
+</head>
+
+<body>
+
+<div class="aurora"><span></span><span></span><span></span></div>
+<div class="grid-overlay"></div>
+
+<nav>
+    <div class="brand" id="brand"></div>
+    <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a id="nav-channel" target="_blank">Channel</a>
+    </div>
+</nav>
+
+<header class="hero">
+    <span class="eyebrow">Portfolio</span>
+    <h1>Hi, I'm <span class="gradient-text" id="hero-name"></span></h1>
+    <div class="role" id="hero-role"></div>
+    <p class="tagline" id="hero-tagline"></p>
+    <div class="cta-row">
+        <a class="btn primary" href="#projects">View Projects</a>
+        <a class="btn ghost" id="hero-game" target="_blank">Play My Game</a>
+    </div>
+</header>
+
+<section class="section" id="projects">
+    <div class="section-head reveal">
+        <h2>Projects</h2>
+        <p>Click any thumbnail to watch the project demo right here.</p>
+    </div>
+    <div class="grid" id="project-grid"></div>
+</section>
+
+<section class="section" id="about">
+    <div class="section-head reveal">
+        <h2>About Me</h2>
+        <p id="about-text"></p>
+    </div>
+</section>
+
+<footer>
+    <p id="footer"></p>
+</footer>
+
+<script>
+// ----- Inject config text -----
+document.title = OWNER_NAME + " — Portfolio";
+document.getElementById("brand").innerHTML = OWNER_NAME + '<span class="dot">.</span>';
+document.getElementById("hero-name").textContent = OWNER_NAME;
+document.getElementById("hero-role").textContent = OWNER_ROLE;
+document.getElementById("hero-tagline").textContent = HERO_TAGLINE;
+document.getElementById("about-text").textContent = ABOUT;
+document.getElementById("nav-channel").href = CHANNEL_URL;
+document.getElementById("hero-game").href = GAME_URL;
+document.getElementById("footer").innerHTML =
+    `© ${new Date().getFullYear()} ${OWNER_NAME} · Built with code & curiosity · ` +
+    `<a href="${CHANNEL_URL}" target="_blank">Coding Mind</a>`;
+
+// ----- Build project cards with lite YouTube facade -----
+const grid = document.getElementById("project-grid");
+
+PROJECTS.forEach(p => {
+    const card = document.createElement("article");
+    card.className = "card reveal";
+
+    const thumb = `https://i.ytimg.com/vi/${p.videoId}/hqdefault.jpg`;
+
+    card.innerHTML = `
+        <div class="video" data-id="${p.videoId}"
+             style="background-image:url('${thumb}')"
+             role="button" aria-label="Play ${p.title}">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="card-body">
+            <span class="chip">${p.tag}</span>
+            <h3>${p.title}</h3>
+            <p>${p.blurb}</p>
+        </div>`;
+
+    grid.appendChild(card);
+});
+
+// Click-to-load the real iframe (faster initial page, privacy-friendly nocookie)
+grid.addEventListener("click", e => {
+    const facade = e.target.closest(".video");
+    if (!facade || facade.dataset.loaded) return;
+    const id = facade.dataset.id;
+    facade.dataset.loaded = "1";
+    facade.innerHTML =
+        `<iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:0"
+                 src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"
+                 title="Project video" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    facade.style.cursor = "default";
+});
+
+// ----- Scroll reveal -----
+const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+        if (en.isIntersecting) {
+            en.target.classList.add("in");
+            io.unobserve(en.target);
+        }
+    });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".reveal").forEach((el, i) => {
+    el.style.transitionDelay = (i % 3) * 0.1 + "s";
+    io.observe(el);
+});
+</script>
+
+</body>
+</html>
