@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio of Adam — a student developer building games, websites, and apps while learning to code.">
 
 <script>
 // =====================================================
-// CONFIGURATION
-// Change only these values
+// CONFIGURATION  —  Edit ONLY these values.
+// Everything below renders automatically from here.
+// Replace the placeholder bits (marked "TODO") with
+// your real info before sharing with admissions.
 // =====================================================
 
 const OWNER_NAME = "Adam";
@@ -18,7 +21,51 @@ const HERO_TAGLINE =
 
 const ABOUT =
     "I'm Adam, a student developer learning programming through Coding Mind. " +
-    "Here are some of the projects I've built across Python, web, and frontend development.";
+    "I love turning ideas into things people can actually use — from games to " +
+    "websites to small apps. Every project on this page taught me something new, " +
+    "and I'm just getting started. I'm excited to keep growing as a builder and " +
+    "to bring that same curiosity and persistence to my studies.";
+
+// --- Quick highlights shown as a stat row under the hero ---
+// TODO: update the numbers so they reflect your real journey.
+const HIGHLIGHTS = [
+    { number: "3+",  label: "Projects Built" },
+    { number: "4",   label: "Languages & Tools" },
+    { number: "1",   label: "Game Published" }
+];
+
+// --- Skills grouped by category ---
+// TODO: add/remove to match what you actually know.
+const SKILLS = [
+    { group: "Languages",      items: ["Python", "JavaScript", "HTML", "CSS"] },
+    { group: "Web & Frontend", items: ["Responsive Design", "DOM / JS", "UI Layout"] },
+    { group: "Tools",          items: ["Unity", "Git & GitHub", "VS Code"] }
+];
+
+// --- Learning journey / timeline (oldest first) ---
+// TODO: replace with your real milestones & dates.
+const JOURNEY = [
+    {
+        date: "2024",
+        title: "Started Coding with Python",
+        text: "Learned the fundamentals — variables, loops, functions, and problem-solving."
+    },
+    {
+        date: "2024",
+        title: "Moved into Web Development",
+        text: "Built my first websites with HTML, CSS, and JavaScript."
+    },
+    {
+        date: "2025",
+        title: "Published a Game",
+        text: "Designed and released a game built in Unity, available to play on itch.io."
+    },
+    {
+        date: "2025",
+        title: "Building This Portfolio",
+        text: "Bringing all of my work together to share my growth as a developer."
+    }
+];
 
 const PROJECTS = [
     {
@@ -26,6 +73,7 @@ const PROJECTS = [
         tag: "Python",
         blurb: "A project built with Python — logic, problem-solving, and clean code.",
         videoId: "cfKVSWWZNCc"
+        // optional: repo: "https://github.com/...", live: "https://..."
     },
     {
         title: "Web Project",
@@ -41,8 +89,12 @@ const PROJECTS = [
     }
 ];
 
+// --- Links & contact ---
 const CHANNEL_URL = "https://www.youtube.com/@codingminds882";
-const GAME_URL = "https://applemonkey5.itch.io/undertale-but-temu";
+const GAME_URL    = "https://applemonkey5.itch.io/undertale-but-temu";
+const GITHUB_URL  = "https://github.com/dominoes-delivery";   // TODO: your GitHub profile
+const CONTACT_EMAIL = "your-email@example.com";               // TODO: your real email
+const GAME_PAGE   = "./game.html";                            // internal game landing page
 
 // =====================================================
 </script>
@@ -137,16 +189,19 @@ nav {
 .nav-links a {
     color: var(--muted);
     text-decoration: none;
-    margin-left: 26px;
+    margin-left: 24px;
     font-size: 0.92rem;
     transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--text); }
+@media (max-width: 640px) {
+    .nav-links a { margin-left: 14px; font-size: 0.82rem; }
+}
 
 /* ---------- Hero ---------- */
 .hero {
     text-align: center;
-    padding: 130px 6vw 90px;
+    padding: 130px 6vw 50px;
     position: relative;
 }
 .eyebrow {
@@ -199,6 +254,7 @@ nav {
     font-size: 0.95rem;
     transition: transform 0.2s, box-shadow 0.2s;
     border: 1px solid var(--border);
+    cursor: pointer;
 }
 .btn.primary {
     background: linear-gradient(110deg, var(--accent-1), var(--accent-2));
@@ -207,6 +263,34 @@ nav {
 }
 .btn.ghost { background: var(--card); }
 .btn:hover { transform: translateY(-3px); box-shadow: 0 14px 34px -12px var(--accent-2); }
+
+/* ---------- Stats / highlights ---------- */
+.stats {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 10px 6vw 70px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.stat {
+    flex: 1 1 160px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 18px;
+    text-align: center;
+}
+.stat .num {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    background: linear-gradient(110deg, var(--accent-3), var(--accent-1) 60%, var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.stat .lbl { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
 
 /* ---------- Section ---------- */
 .section { padding: 40px 6vw 90px; max-width: 1200px; margin: 0 auto; }
@@ -284,6 +368,83 @@ nav {
 }
 .card-body h3 { font-size: 1.3rem; margin-bottom: 8px; }
 .card-body p { color: var(--muted); font-size: 0.95rem; }
+.card-links { margin-top: 14px; display: flex; gap: 16px; }
+.card-links a {
+    color: var(--accent-1);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.card-links a:hover { text-decoration: underline; }
+
+/* ---------- Skills ---------- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+}
+.skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+}
+.skill-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+    color: var(--text);
+}
+.tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.tag {
+    font-size: 0.85rem;
+    color: var(--text);
+    background: rgba(124, 92, 255, 0.12);
+    border: 1px solid rgba(124, 92, 255, 0.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+}
+
+/* ---------- Timeline ---------- */
+.timeline { position: relative; max-width: 760px; margin: 0 auto; padding-left: 28px; }
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(var(--accent-1), var(--accent-2));
+}
+.tl-item { position: relative; padding: 0 0 34px 26px; }
+.tl-item::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent-2);
+    box-shadow: 0 0 0 4px rgba(255, 79, 154, 0.18);
+}
+.tl-item .date {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent-3);
+    margin-bottom: 4px;
+}
+.tl-item h3 { font-size: 1.15rem; margin-bottom: 4px; }
+.tl-item p { color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- Contact ---------- */
+.contact {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+}
+.contact p { color: var(--muted); margin-bottom: 30px; }
+.contact-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
 /* ---------- Reveal animation ---------- */
 .reveal {
@@ -314,8 +475,10 @@ footer a:hover { text-decoration: underline; }
     <div class="brand" id="brand"></div>
     <div class="nav-links">
         <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#journey">Journey</a>
         <a href="#about">About</a>
-        <a id="nav-channel" target="_blank">Channel</a>
+        <a href="#contact">Contact</a>
     </div>
 </nav>
 
@@ -326,9 +489,12 @@ footer a:hover { text-decoration: underline; }
     <p class="tagline" id="hero-tagline"></p>
     <div class="cta-row">
         <a class="btn primary" href="#projects">View Projects</a>
+        <a class="btn ghost" href="#contact">Get in Touch</a>
         <a class="btn ghost" id="hero-game" target="_blank">Play My Game</a>
     </div>
 </header>
+
+<section class="stats" id="stats"></section>
 
 <section class="section" id="projects">
     <div class="section-head reveal">
@@ -338,10 +504,41 @@ footer a:hover { text-decoration: underline; }
     <div class="grid" id="project-grid"></div>
 </section>
 
+<section class="section" id="skills">
+    <div class="section-head reveal">
+        <h2>Skills &amp; Tools</h2>
+        <p>The languages and tools I use to build my projects.</p>
+    </div>
+    <div class="skills-grid" id="skills-grid"></div>
+</section>
+
+<section class="section" id="journey">
+    <div class="section-head reveal">
+        <h2>My Journey</h2>
+        <p>How I've grown as a developer, step by step.</p>
+    </div>
+    <div class="timeline" id="timeline"></div>
+</section>
+
 <section class="section" id="about">
     <div class="section-head reveal">
         <h2>About Me</h2>
         <p id="about-text"></p>
+    </div>
+</section>
+
+<section class="section" id="contact">
+    <div class="section-head reveal" style="text-align:center;">
+        <h2 style="margin:0 auto 10px;">Let's Connect</h2>
+    </div>
+    <div class="contact reveal">
+        <p>I'm always happy to talk about my work, my learning, or new opportunities.
+           Feel free to reach out through any of the links below.</p>
+        <div class="contact-row">
+            <a class="btn primary" id="contact-email">Email Me</a>
+            <a class="btn ghost" id="contact-github" target="_blank">GitHub</a>
+            <a class="btn ghost" id="contact-channel" target="_blank">YouTube</a>
+        </div>
     </div>
 </section>
 
@@ -357,11 +554,22 @@ document.getElementById("hero-name").textContent = OWNER_NAME;
 document.getElementById("hero-role").textContent = OWNER_ROLE;
 document.getElementById("hero-tagline").textContent = HERO_TAGLINE;
 document.getElementById("about-text").textContent = ABOUT;
-document.getElementById("nav-channel").href = CHANNEL_URL;
 document.getElementById("hero-game").href = GAME_URL;
+document.getElementById("contact-email").href = "mailto:" + CONTACT_EMAIL;
+document.getElementById("contact-github").href = GITHUB_URL;
+document.getElementById("contact-channel").href = CHANNEL_URL;
 document.getElementById("footer").innerHTML =
     `© ${new Date().getFullYear()} ${OWNER_NAME} · Built with code & curiosity · ` +
     `<a href="${CHANNEL_URL}" target="_blank">Coding Mind</a>`;
+
+// ----- Build stat highlights -----
+const statsEl = document.getElementById("stats");
+HIGHLIGHTS.forEach(h => {
+    const el = document.createElement("div");
+    el.className = "stat reveal";
+    el.innerHTML = `<div class="num">${h.number}</div><div class="lbl">${h.label}</div>`;
+    statsEl.appendChild(el);
+});
 
 // ----- Build project cards with lite YouTube facade -----
 const grid = document.getElementById("project-grid");
@@ -371,6 +579,14 @@ PROJECTS.forEach(p => {
     card.className = "card reveal";
 
     const thumb = `https://i.ytimg.com/vi/${p.videoId}/hqdefault.jpg`;
+
+    let links = "";
+    if (p.repo || p.live) {
+        links += '<div class="card-links">';
+        if (p.repo) links += `<a href="${p.repo}" target="_blank">Source Code ↗</a>`;
+        if (p.live) links += `<a href="${p.live}" target="_blank">Live Demo ↗</a>`;
+        links += "</div>";
+    }
 
     card.innerHTML = `
         <div class="video" data-id="${p.videoId}"
@@ -382,6 +598,7 @@ PROJECTS.forEach(p => {
             <span class="chip">${p.tag}</span>
             <h3>${p.title}</h3>
             <p>${p.blurb}</p>
+            ${links}
         </div>`;
 
     grid.appendChild(card);
@@ -398,6 +615,26 @@ grid.addEventListener("click", e => {
                  src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"
                  title="Project video" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     facade.style.cursor = "default";
+});
+
+// ----- Build skills -----
+const skillsGrid = document.getElementById("skills-grid");
+SKILLS.forEach(s => {
+    const card = document.createElement("div");
+    card.className = "skill-card reveal";
+    const tags = s.items.map(i => `<span class="tag">${i}</span>`).join("");
+    card.innerHTML = `<h3>${s.group}</h3><div class="tags">${tags}</div>`;
+    skillsGrid.appendChild(card);
+});
+
+// ----- Build journey timeline -----
+const tl = document.getElementById("timeline");
+JOURNEY.forEach(j => {
+    const item = document.createElement("div");
+    item.className = "tl-item reveal";
+    item.innerHTML =
+        `<div class="date">${j.date}</div><h3>${j.title}</h3><p>${j.text}</p>`;
+    tl.appendChild(item);
 });
 
 // ----- Scroll reveal -----
